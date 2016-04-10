@@ -8,4 +8,8 @@ class Product < ActiveRecord::Base
 
   mount_uploader :photo, ProductPhotoUploader
 
+  def to_param
+	 "#{id}-#{name}".parameterize
+	end
+
 end
