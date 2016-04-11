@@ -10,7 +10,9 @@
   <tbody>
     <% @cart.line_items.each do |line_item| %>
       <tr>
-        <td><%= link_to line_item.unit_price %></td>
+        <td><%= link_to line_item.item_name, product_path(line_item.product) %>
+        <td><%= line_item.quantity %></td>
+        <td><%= number_to_currency line_item.unit_price %></td>
         <td><%= number_to_currency line_item.full_price %></td>
       </tr>
     <% end %>
@@ -28,8 +30,9 @@
       <td colspan="2"><%= number_to_currency @cart.full_cost %></td>
     </tr>
   </tbody>
+</table>
 
-  <%= link_to finish_cart_path, method: :post, class: "btn btn-success btn-lg" do %>
-    <span class="fa fa-check"></span>
-    Potwierdzam zamówienie z obowiązkiem zapłaty
-  <% end %>
+<%= link_to finish_cart_path, method: :post, class: "btn btn-success btn-lg" do %>
+  <span class="fa fa-check"></span>
+  Potwierdzam zamówienie z obowiązkiem zapłaty
+<% end %>
