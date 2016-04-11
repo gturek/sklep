@@ -5,6 +5,8 @@ class Order < ActiveRecord::Base
   has_one :address
   has_many :transitions, class_name: "OrderTransition", autosave: false
 
+  accepts_nested_attributes_for :address
+
   delegate :can_transition_to?, :transition_to!, :transition_to, :current_state,
            to: :state_machine
 
